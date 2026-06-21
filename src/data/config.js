@@ -64,7 +64,7 @@ export const config = {
         'PostgreSQL',
         'Docker',
       ],
-      githubUrl: 'https://github.com/IsbatBInHossain/nodechess',
+      githubUrl: 'https://github.com/15b4t/nodechess',
       demoUrl: 'https://node-chess.netlify.app/',
     },
     {
@@ -72,7 +72,7 @@ export const config = {
       description:
         'A modern, interactive CLI for scaffolding production-ready Express.js projects. Inspired by create-vite.',
       tags: ['Node.js', 'JavaScript', 'CLI', 'Express', 'TypeScript'],
-      githubUrl: 'https://github.com/IsbatBInHossain/create-x-lite',
+      githubUrl: 'https://github.com/15b4t/create-x-lite',
       demoUrl: 'https://www.npmjs.com/package/create-x-lite',
     },
     {
@@ -80,7 +80,7 @@ export const config = {
       description:
         'A custom memory allocator written in C. Implements a first-fit free list, block splitting, forward and backward coalescing, sbrk-based heap growth, and mmap for large allocations.',
       tags: ['C', 'Systems Programming', 'Memory Management', 'Low-level'],
-      githubUrl: 'https://github.com/IsbatBInHossain/imalloc',
+      githubUrl: 'https://github.com/15b4t/imalloc',
       demoUrl: '',
     },
     {
@@ -88,7 +88,7 @@ export const config = {
       description:
         'A Unix shell built from scratch in C. Supports pipelines, I/O redirection, background processes, quote parsing, and builtin commands. POSIX only.',
       tags: ['C', 'Unix', 'Linux', 'Shell', 'Systems Programming'],
-      githubUrl: 'https://github.com/IsbatBInHossain/ishell',
+      githubUrl: 'https://github.com/15b4t/ishell',
       demoUrl: '',
     },
     {
@@ -96,7 +96,7 @@ export const config = {
       description:
         'A browser-based coding notebook with a sandboxed JS runtime powered by esbuild-wasm. Import any npm library, render React components inline, and write markdown notes alongside code.',
       tags: ['React', 'TypeScript', 'esbuild', 'Redux', 'NPM'],
-      githubUrl: 'https://github.com/IsbatBInHossain/codenotes',
+      githubUrl: 'https://github.com/15b4t/codenotes',
       demoUrl: 'https://www.npmjs.com/package/@isbat/codenotes',
     },
     {
@@ -104,7 +104,7 @@ export const config = {
       description:
         'A collaborative online design tool with real-time chat, cursors, and reactions, built using Next.js and Liveblocks for a seamless multi-user experience.',
       tags: ['Next.js', 'TypeScript', 'Liveblocks', 'TailwindCSS', 'Fabric.js'],
-      githubUrl: 'https://github.com/IsbatBInHossain/draftcraft',
+      githubUrl: 'https://github.com/15b4t/draftcraft',
       demoUrl: 'https://draftcraft.vercel.app/',
     },
     {
@@ -112,7 +112,7 @@ export const config = {
       description:
         'An inventory management web app using the MERN stack, allowing users to add, delete, and edit products, with Cloudinary integration for media.',
       tags: ['Node.js', 'Express', 'React', 'MongoDB', 'Cloudinary'],
-      githubUrl: 'https://github.com/IsbatBInHossain/Warehouse-Wizard',
+      githubUrl: 'https://github.com/15b4t/Warehouse-Wizard',
       demoUrl: 'https://warehouse-wizard.vercel.app/',
     },
   ],
@@ -121,7 +121,7 @@ export const config = {
   contact: {
     title: 'Contacts',
     links: {
-      github: 'https://github.com/IsbatBInHossain',
+      github: 'https://github.com/15b4t',
       linkedin: 'https://www.linkedin.com/in/isbat-bin-hossain/',
       email: 'mailto:isbatbinhossain@gmail.com',
     },

@@ -63,15 +63,16 @@ const HeroSection = () => {
             [ VIEW_RESUME ]
           </motion.a>
 
-          {/* Button 2: Download CV PDF */}
+          {/* Button 2: Visit Github */}
           <motion.a
-            href="/Isbat_Bin_Hossain_CV.pdf"
-            download 
+            href={config.contact.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-mono text-sm border border-matrix-green-dark/50 px-6 py-3 rounded text-text-secondary 
                        hover:border-matrix-green hover:text-matrix-green hover:-translate-y-1 transition-all duration-300"
             variants={buttonVariants}
           >
-            [ DOWNLOAD_CV.PDF ]
+            [ ACCESS_GITHUB.SH ]
           </motion.a>
         </motion.div>
         </div>

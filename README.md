@@ -38,7 +38,7 @@ You need to have [Node.js](https://nodejs.org/) (version 18.x or later) and npm 
 1.  **Fork the repository** to your own GitHub account.
 2.  **Clone your fork** to your local machine:
     ```sh
-    git clone https://github.com/IsbatBInHossain/isbat-portfolio.git
+    git clone https://github.com/15b4t/isbat-portfolio.git
     ```
 3.  **Navigate into the project directory:**
     ```sh
