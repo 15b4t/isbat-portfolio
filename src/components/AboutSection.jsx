@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { config } from '@/data/config'
 
-const AVATAR_FONT_SIZE = 'clamp(4.5px, 2vw, 8px)'
+const AVATAR_FONT_SIZE = 'clamp(4px, 1.8cqw, 8px)'
 const bootTime = new Date()
 
 // --- Animation Variants for the Info Tab ---
@@ -52,16 +52,16 @@ const AboutSection = () => {
         {config.about.title}
       </h2>
 
-      <div className='flex flex-col md:flex-row gap-16 md:gap-12 items-start'>
+      <div className='flex flex-col md:flex-row gap-16 md:gap-12 items-start md:items-center'>
         {/* Left Column: ASCII Avatar */}
         <motion.div
-          className='w-full md:w-1/2 relative overflow-x-auto flex justify-center'
+          className='w-full md:w-1/2 relative overflow-hidden flex justify-center'
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          <div className='relative w-11/12 mx-auto'>
+          <div className='relative w-11/12 mx-auto' style={{ containerType: 'inline-size' }}>
             <div className='scan-line-effect'></div>
             <pre
               className='text-matrix-green-dark leading-tight font-mono'
