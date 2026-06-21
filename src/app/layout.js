@@ -5,6 +5,8 @@ import { Fira_Code, VT323 } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Loader from '@/components/Loader'
+import { SettingsProvider, useSettings } from '@/context/SettingsContext'
+import SettingsPanel from '@/components/SettingsPanel'
 
 const firaCode = Fira_Code({ subsets: ['latin'], display: 'swap' })
 const vt323 = VT323({
@@ -13,9 +15,10 @@ const vt323 = VT323({
   variable: '--font-vt323', // Assign it a CSS variable
 })
 
-export default function RootLayout({ children }) {
+function LayoutContent({ children }) {
   const [isLoading, setIsLoading] = useState(true)
   const [isFirstVisit, setIsFirstVisit] = useState(null)
+  const { crtEnabled, bloomEnabled } = useSettings()
 
   useEffect(() => {
     document.title = 'Isbat Bin Hossain | Portfolio'
@@ -33,7 +36,7 @@ export default function RootLayout({ children }) {
       <head>
         <meta
           name='description'
-          content='A Marix themed portfolio of Isbat Bin Hossain, a Backend Engineer and System Builder, showcasing projects in Node.js, Python and more.'
+          content='A Matrix themed portfolio of Isbat Bin Hossain, a Backend Engineer and System Builder, showcasing projects in Node.js, Python and more.'
         />
         <link rel='icon' href='/icon.svg' type='image/svg+xml' />
         {/* --- Open Graph & Twitter Card Metadata (for social sharing) --- */}
@@ -60,7 +63,7 @@ export default function RootLayout({ children }) {
           content='https://isbat-portfolio.vercel.app/screenshots/hero_section.PNG'
         />
       </head>
-      <body className={`${firaCode.className} ${vt323.variable} bg-background`}>
+      <body className={`${firaCode.className} ${vt323.variable} bg-background ${crtEnabled ? 'crt-active' : ''} ${bloomEnabled ? 'bloom-active' : ''}`}>
         <div className='crt-effect'>
           {isFirstVisit === null ? (
             <div className='w-full h-screen' />
@@ -73,10 +76,19 @@ export default function RootLayout({ children }) {
             <main className='crt-text'>
               <Navbar />
               {children}
+              <SettingsPanel />
             </main>
           )}
         </div>
       </body>
     </html>
+  )
+}
+
+export default function RootLayout({ children }) {
+  return (
+    <SettingsProvider>
+      <LayoutContent>{children}</LayoutContent>
+    </SettingsProvider>
   )
 }

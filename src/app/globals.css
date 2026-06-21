@@ -115,16 +115,16 @@
     z-index: 2;
   }
 
-  /* Apply text glow and blur only to text-rendering tags to keep canvas and background grids sharp */
-  .crt-text h1,
-  .crt-text h2,
-  .crt-text h3,
-  .crt-text p,
-  .crt-text a,
-  .crt-text span,
-  .crt-text li,
-  .crt-text pre,
-  .crt-text button {
+  /* Apply text glow and blur only to text-rendering tags when bloom-active is active */
+  .bloom-active .crt-text h1,
+  .bloom-active .crt-text h2,
+  .bloom-active .crt-text h3,
+  .bloom-active .crt-text p,
+  .bloom-active .crt-text a,
+  .bloom-active .crt-text span,
+  .bloom-active .crt-text li,
+  .bloom-active .crt-text pre,
+  .bloom-active .crt-text button {
     text-shadow: 0 0 5px var(--color-matrix-green);
     filter: blur(0.4px);
   }
@@ -134,20 +134,20 @@
     z-index: 2;
   }
 
-  .crt-text-subtle h1,
-  .crt-text-subtle h2,
-  .crt-text-subtle h3,
-  .crt-text-subtle p,
-  .crt-text-subtle a,
-  .crt-text-subtle span,
-  .crt-text-subtle li,
-  .crt-text-subtle pre,
-  .crt-text-subtle button {
+  .bloom-active .crt-text-subtle h1,
+  .bloom-active .crt-text-subtle h2,
+  .bloom-active .crt-text-subtle h3,
+  .bloom-active .crt-text-subtle p,
+  .bloom-active .crt-text-subtle a,
+  .bloom-active .crt-text-subtle span,
+  .bloom-active .crt-text-subtle li,
+  .bloom-active .crt-text-subtle pre,
+  .bloom-active .crt-text-subtle button {
     text-shadow: 0 0 2px var(--color-matrix-green);
     filter: blur(0.2px);
   }
 
-  /* Scanline Overlay */
+  /* Scanline Overlay for Loader */
   .crt-container::after {
     content: ' ';
     display: block;
@@ -172,20 +172,24 @@
     animation: flicker 0.15s infinite;
   }
 
-  /* CRT Effect */
+  /* CRT Effect Wrapper */
   .crt-effect {
     position: relative;
   }
 
-  /* Full screen CRT flicker animation */
+  /* Full screen CRT flicker animation (active only when crt-active is set) */
   @keyframes crt-screen-flicker {
     0% { opacity: 0.978; }
     50% { opacity: 1; }
     100% { opacity: 0.985; }
   }
 
-  /* Full screen scanlines overlay covering the whole screen */
-  .crt-effect::after {
+  .crt-active .crt-effect {
+    animation: crt-screen-flicker 0.15s infinite;
+  }
+
+  /* Full screen scanlines overlay covering the whole screen (active only when crt-active is set) */
+  .crt-active .crt-effect::after {
     content: ' ';
     display: block;
     position: fixed;
