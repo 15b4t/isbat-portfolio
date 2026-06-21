@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { config } from '@/data/config'
 
-const AVATAR_FONT_SIZE = '8px'
+const AVATAR_FONT_SIZE = 'clamp(4.5px, 2vw, 8px)'
 const bootTime = new Date()
 
 // --- Animation Variants for the Info Tab ---
