@@ -74,12 +74,12 @@ const Loader = ({ isFirstVisit, onLoadingComplete }) => {
           <HackingSequence onComplete={() => setLongSequenceStep(2)} />
         )}
 
-        {longSequenceStep === 2 && (
-          <PasswordModal onComplete={onLoadingComplete} />
-        )}
-
         <div ref={scrollAnchorRef}></div>
       </div>
+
+      {longSequenceStep === 2 && (
+        <PasswordModal onComplete={onLoadingComplete} />
+      )}
     </div>
   )
 }
