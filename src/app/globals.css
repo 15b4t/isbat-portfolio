@@ -111,18 +111,40 @@
   }
 
   .crt-text {
-    /* The text glow/bloom effect */
-    text-shadow: 0 0 5px var(--color-matrix-green);
-    /* The subtle text blur */
-    filter: blur(0.4px);
     position: relative;
     z-index: 2;
   }
+
+  /* Apply text glow and blur only to text-rendering tags to keep canvas and background grids sharp */
+  .crt-text h1,
+  .crt-text h2,
+  .crt-text h3,
+  .crt-text p,
+  .crt-text a,
+  .crt-text span,
+  .crt-text li,
+  .crt-text pre,
+  .crt-text button {
+    text-shadow: 0 0 5px var(--color-matrix-green);
+    filter: blur(0.4px);
+  }
+
   .crt-text-subtle {
-    text-shadow: 0 0 2px var(--color-matrix-green);
-    filter: blur(0.2px);
     position: relative;
     z-index: 2;
+  }
+
+  .crt-text-subtle h1,
+  .crt-text-subtle h2,
+  .crt-text-subtle h3,
+  .crt-text-subtle p,
+  .crt-text-subtle a,
+  .crt-text-subtle span,
+  .crt-text-subtle li,
+  .crt-text-subtle pre,
+  .crt-text-subtle button {
+    text-shadow: 0 0 2px var(--color-matrix-green);
+    filter: blur(0.2px);
   }
 
   /* Scanline Overlay */
@@ -155,6 +177,14 @@
     position: relative;
   }
 
+  /* Full screen CRT flicker animation */
+  @keyframes crt-screen-flicker {
+    0% { opacity: 0.978; }
+    50% { opacity: 1; }
+    100% { opacity: 0.985; }
+  }
+
+  /* Full screen scanlines overlay covering the whole screen */
   .crt-effect::after {
     content: ' ';
     display: block;
@@ -165,13 +195,13 @@
     right: 0;
     background: linear-gradient(
         rgba(18, 16, 16, 0) 50%,
-        rgba(0, 0, 0, 0.25) 50%
+        rgba(0, 0, 0, 0.22) 50% /* Lightened to prevent screen dimming */
       ),
       linear-gradient(
         90deg,
-        rgba(255, 0, 0, 0.06),
+        rgba(255, 0, 0, 0.05), /* Subtle shadow mask */
         rgba(0, 255, 0, 0.02),
-        rgba(0, 0, 255, 0.06)
+        rgba(0, 0, 255, 0.05)
       );
     z-index: 10000;
     background-size: 100% 3px, 3px 100%;
