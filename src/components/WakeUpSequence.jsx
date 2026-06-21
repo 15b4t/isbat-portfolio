@@ -9,10 +9,10 @@ const WakeUpSequence = ({ onComplete }) => {
 
   // Animation seqences
   const sequences = [
-    ['> Wake up, Neo...', 1000, () => setStep(1)],
-    ['> The Matrix has you...', 1500, () => setStep(2)],
-    ['> Follow the white rabbit.', 1500, () => setStep(3)],
-    ['> Knock, knock, Neo.', 1500, () => onComplete()], // Final step calls onComplete
+    ['> Wake up, Neo...', 600, () => setStep(1)],
+    ['> The Matrix has you...', 800, () => setStep(2)],
+    ['> Follow the white rabbit.', 800, () => setStep(3)],
+    ['> Knock, knock, Neo.', 800, () => onComplete()], // Final step calls onComplete
   ]
 
   return (
@@ -22,7 +22,7 @@ const WakeUpSequence = ({ onComplete }) => {
         sequence={sequences[step]}
         wrapper='span'
         cursor={false}
-        speed={40}
+        speed={45}
       />
     </div>
   )

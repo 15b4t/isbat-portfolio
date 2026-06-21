@@ -8,22 +8,20 @@ import { TypeAnimation } from 'react-type-animation'
 
 // Short starting sequence for returning visitors
 const FastBootSequence = ({ onComplete }) => {
-  useEffect(() => {
-    const timer = setTimeout(onComplete, 3000) // End after 2 seconds
-    return () => clearTimeout(timer)
-  }, [onComplete])
-
   return (
     <TypeAnimation
       sequence={[
         '> SYSTEM CHECK ... OK\n> USER AUTHENTICATED...\n> LAUNCHING...',
+        300,
+        onComplete,
       ]}
       wrapper='pre'
       cursor={false}
-      speed={60}
+      speed={80}
     />
   )
 }
+
 
 const Loader = ({ isFirstVisit, onLoadingComplete }) => {
   const [longSequenceStep, setLongSequenceStep] = useState(0)
@@ -60,6 +58,14 @@ const Loader = ({ isFirstVisit, onLoadingComplete }) => {
   // Render the full, multi-step sequence for first-time visitors
   return (
     <div className='fixed top-0 left-0 w-full h-full bg-background z-[9999] overflow-y-auto'>
+      {/* Skip Boot Button */}
+      <button
+        onClick={onLoadingComplete}
+        className='absolute top-4 right-4 text-xs font-mono text-matrix-green-dark hover:text-matrix-green border border-matrix-green-dark/30 hover:border-matrix-green px-3 py-1.5 rounded cursor-pointer transition-all duration-200 z-[10000]'
+      >
+        [ SKIP_BOOT ]
+      </button>
+
       <div className='crt-text p-4 text-lg'>
         {longSequenceStep === 0 && (
           <WakeUpSequence onComplete={() => setLongSequenceStep(1)} />

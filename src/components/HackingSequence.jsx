@@ -8,11 +8,11 @@ const HackingSequence = ({ onComplete }) => {
 
   useEffect(() => {
     const timeouts = [
-      setTimeout(() => setStep(1), 700),
-      setTimeout(() => setStep(2), 2500),
-      setTimeout(() => setStep(3), 3500),
-      setTimeout(() => setStep(4), 5000),
-      setTimeout(onComplete, 6000),
+      setTimeout(() => setStep(1), 400),
+      setTimeout(() => setStep(2), 1300),
+      setTimeout(() => setStep(3), 2000),
+      setTimeout(() => setStep(4), 2900),
+      setTimeout(onComplete, 3800),
     ]
     return () => timeouts.forEach(clearTimeout)
   }, [onComplete])
@@ -34,7 +34,7 @@ const HackingSequence = ({ onComplete }) => {
           sequence={['> nmap -v -sS -O 10.2.2.2']}
           wrapper='p'
           cursor={false}
-          speed={50}
+          speed={65}
         />
       )}
 
@@ -68,7 +68,7 @@ const HackingSequence = ({ onComplete }) => {
             sequence={['> sshnuke 10.2.2.2 -rootpw “Z10N0101”']}
             wrapper='p'
             cursor={false}
-            speed={60}
+            speed={75}
           />
         </div>
       )}

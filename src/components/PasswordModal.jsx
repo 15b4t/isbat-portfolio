@@ -25,7 +25,7 @@ const PasswordModal = ({ onComplete }) => {
               sequence={['********', 500, () => setStatus('granted')]}
               wrapper='p'
               cursor={true}
-              speed={70}
+              speed={85}
               repeat={0}
             />
           )}
