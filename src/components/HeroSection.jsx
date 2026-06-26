@@ -4,7 +4,6 @@ import { TypeAnimation } from 'react-type-animation'
 import { config } from '@/data/config'
 import MatrixRain from './MatrixRain'
 import { motion } from 'framer-motion'
-import { FiChevronDown } from 'react-icons/fi'
 
 // Animation variants for the button container
 const buttonContainerVariants = {
@@ -77,37 +76,6 @@ const HeroSection = () => {
         </motion.div>
         </div>
       </div>
-      {/* Scroll down indicator */}
-      <a
-        href='#projects'
-        className='absolute bottom-4 left-1/2 -translate-x-1/2 z-10'
-        aria-label='Scroll to projects'
-      >
-        <div className='flex flex-col items-center'>
-          {/* Render three chevrons, each with its own motion.div and a unique delay */}
-          {[0, 0.2, 0.4].map(delay => (
-            <motion.div
-              key={delay}
-              initial={{ opacity: 0, y: -5 }}
-              animate={{
-                opacity: [0, 1, 0], // Fades in, then fades out
-                y: 5,
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: 'loop',
-                repeatDelay: 1, // The gap between each full loop
-                delay: delay, // The initial delay that creates the cascade
-                ease: 'linear',
-              }}
-              className='-mt-2' // Negative margin to stack them closely
-            >
-              <FiChevronDown className='text-text-secondary text-3xl' />
-            </motion.div>
-          ))}
-        </div>
-      </a>
     </section>
   )
 }
