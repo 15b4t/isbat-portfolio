@@ -65,7 +65,7 @@ const HackingSequence = ({ onComplete }) => {
       {step >= 3 && (
         <div className='mt-2'>
           <TypeAnimation
-            sequence={['> sshnuke 10.2.2.2 -rootpw “Z10N0101”']}
+            sequence={['> sshnuke 10.2.2.2 -rootpw "Z10N0101"']}
             wrapper='p'
             cursor={false}
             speed={75}
@@ -76,9 +76,9 @@ const HackingSequence = ({ onComplete }) => {
       {/* The final results, appear instantly */}
       {step >= 4 && (
         <div className='mt-2 text-text-primary'>
-          <p>Connecting to 10.2.2.2:ssh ... successful”</p>
+          <p>Connecting to 10.2.2.2:ssh ... successful</p>
           <p>Attempting to exploit SSHv1 CRC32 ... successful</p>
-          <p>Resetting root password to “Z10N0101”.</p>
+          <p>Resetting root password to "Z10N0101".</p>
           <p>System open: Access level &lt;9&gt;</p>
         </div>
       )}
