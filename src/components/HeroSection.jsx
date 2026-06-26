@@ -28,7 +28,7 @@ const buttonVariants = {
 const HeroSection = () => {
 
   return (
-    <section className='relative flex flex-col items-center justify-center text-center h-[100vh] min-h-[400px] md:min-h-[500px] mb-16 overflow-hidden w-full'>
+    <section className='relative flex flex-col items-center justify-center text-center h-[100dvh] min-h-[400px] md:min-h-[500px] mb-16 overflow-hidden w-full'>
       <MatrixRain />
 
       <div className='relative z-10 p-4 crt-text'>

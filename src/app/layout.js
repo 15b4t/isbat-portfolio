@@ -66,7 +66,7 @@ function LayoutContent({ children }) {
       <body className={`${firaCode.className} ${vt323.variable} bg-background ${crtEnabled ? 'crt-active' : ''} ${bloomEnabled ? 'bloom-active' : ''}`}>
         <div className='crt-effect'>
           {isFirstVisit === null ? (
-            <div className='w-full h-screen' />
+            <div className='w-full h-dvh' />
           ) : isLoading ? (
             <Loader
               isFirstVisit={isFirstVisit}
