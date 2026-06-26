@@ -68,16 +68,47 @@ const MatrixRain = () => {
       animationFrameIdRef.current = window.requestAnimationFrame(animate)
     }
 
+    // --- Start/stop so the loop never paints while the hero is scrolled
+    // off-screen or the tab is backgrounded (saves battery). ---
+    let isOnScreen = true
+    let isPageVisible = !document.hidden
+
+    const start = () => {
+      if (animationFrameIdRef.current == null) {
+        lastTime = 0
+        animationFrameIdRef.current = window.requestAnimationFrame(animate)
+      }
+    }
+    const stop = () => {
+      if (animationFrameIdRef.current != null) {
+        window.cancelAnimationFrame(animationFrameIdRef.current)
+        animationFrameIdRef.current = null
+      }
+    }
+    const sync = () => (isOnScreen && isPageVisible ? start() : stop())
+
     initialize()
-    animate(0) // Start the animation loop
+    sync()
 
     window.addEventListener('resize', initialize)
 
+    const observer = new IntersectionObserver(([entry]) => {
+      isOnScreen = entry.isIntersecting
+      sync()
+    })
+    observer.observe(canvas)
+
+    const handleVisibility = () => {
+      isPageVisible = !document.hidden
+      sync()
+    }
+    document.addEventListener('visibilitychange', handleVisibility)
+
     return () => {
       window.removeEventListener('resize', initialize)
-      if (animationFrameIdRef.current) {
-        window.cancelAnimationFrame(animationFrameIdRef.current)
-      }
+      document.removeEventListener('visibilitychange', handleVisibility)
+      observer.disconnect()
+      stop()
     }
   }, [speed])
 
