@@ -43,7 +43,7 @@ export default function Home() {
     }
 
     // Subscribe to changes in the smooth size
-    const unsubscribe = smoothSpotlightSize.onChange(value => {
+    const unsubscribe = smoothSpotlightSize.on('change', value => {
       container.style.setProperty('--spotlight-size', `${value}px`)
     })
 
