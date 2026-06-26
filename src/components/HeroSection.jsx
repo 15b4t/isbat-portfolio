@@ -65,7 +65,7 @@ const HeroSection = () => {
 
           {/* Button 2: Visit Github */}
           <motion.a
-            href={config.contact.links.github}
+            href={config.contact.links.github.url}
             target="_blank"
             rel="noopener noreferrer"
             className="font-mono text-sm border border-matrix-green-dark/50 px-6 py-3 rounded text-text-secondary 

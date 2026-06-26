@@ -119,11 +119,21 @@ export const config = {
 
   // Contact
   contact: {
-    title: 'Contacts',
+    title: '// 03. ESTABLISH_CONTACT',
+    subtitle: 'Select a secure channel to dispatch your transmission.',
     links: {
-      github: 'https://github.com/15b4t',
-      linkedin: 'https://www.linkedin.com/in/isbat-bin-hossain/',
-      email: 'mailto:isbatbinhossain@gmail.com',
+      github: {
+        url: 'https://github.com/15b4t',
+        label: '[github_profile]',
+      },
+      linkedin: {
+        url: 'https://www.linkedin.com/in/isbat-bin-hossain/',
+        label: '[linkedin_network]',
+      },
+      email: {
+        url: 'mailto:isbatbinhossain@gmail.com',
+        label: '[secure_email_protocol]',
+      },
     },
   },
 };

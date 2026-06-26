@@ -8,25 +8,23 @@ import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 const ContactSection = () => {
   const [hoveredIcon, setHoveredIcon] = useState(null)
 
+  // Icons live here (JSX, not data); URLs + labels come from config.
   const socialIcons = {
-    github: { icon: <FaGithub />, label: '[github_profile]' },
-    linkedin: { icon: <FaLinkedin />, label: '[linkedin_network]' },
-    email: { icon: <FaEnvelope />, label: '[secure_email_protocol]' },
+    github: <FaGithub />,
+    linkedin: <FaLinkedin />,
+    email: <FaEnvelope />,
   }
 
   return (
     <section id='contact' className='py-24 text-center'>
-      <h2 className='text-3xl font-bold mb-4'>// 03. ESTABLISH_CONTACT</h2>
-      <p className='text-text-secondary mb-12'>
-        {' '}
-        Select a secure channel to dispatch your transmission.
-      </p>
+      <h2 className='text-3xl font-bold mb-4'>{config.contact.title}</h2>
+      <p className='text-text-secondary mb-12'>{config.contact.subtitle}</p>
 
       <div className='flex justify-center items-end gap-12 md:gap-16'>
-        {Object.entries(config.contact.links).map(([key, value]) => (
+        {Object.entries(config.contact.links).map(([key, { url, label }]) => (
           <a
             key={key}
-            href={value}
+            href={url}
             target='_blank'
             rel='noopener noreferrer'
             aria-label={key}
@@ -51,12 +49,12 @@ const ContactSection = () => {
 
             {/* Icon */}
             <div className='text-4xl text-text-secondary group-hover:text-matrix-green group-hover:-translate-y-1 transition-all duration-300'>
-              {socialIcons[key].icon}
+              {socialIcons[key]}
             </div>
 
             {/* Label */}
             <p className='text-xs text-text-secondary font-mono transition-opacity duration-300 opacity-0 group-hover:opacity-100'>
-              {socialIcons[key].label}
+              {label}
             </p>
           </a>
         ))}
