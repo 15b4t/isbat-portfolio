@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { anomalyCharcters } from '@/data/constants'
+import { anomalyCharacters } from '@/data/constants'
 
 // Helper to generate a random string
 const generateRandomString = (length, characterSet) => {
@@ -16,9 +16,8 @@ const generateRandomString = (length, characterSet) => {
 }
 
 // Pre-generate a static noise pool at startup to save CPU cycles
-const anomolyCharacters = anomalyCharcters
 const NOISE_POOL_SIZE = 4000
-const noisePool = generateRandomString(NOISE_POOL_SIZE, anomolyCharacters)
+const noisePool = generateRandomString(NOISE_POOL_SIZE, anomalyCharacters)
 
 // O(1) noise retrieval by taking random slices of the static pool
 const getPreGeneratedNoise = length => {

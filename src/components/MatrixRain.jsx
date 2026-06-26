@@ -1,6 +1,6 @@
 'use client'
 
-import { anomalyCharcters } from '@/data/constants'
+import { anomalyCharacters } from '@/data/constants'
 import { useEffect, useRef } from 'react'
 
 const MatrixRain = () => {
@@ -15,7 +15,7 @@ const MatrixRain = () => {
     if (!canvas) return
 
     const ctx = canvas.getContext('2d')
-    const characters = anomalyCharcters
+    const characters = anomalyCharacters
     const fontSize = 13
     let columns = 0
     let rainDrops = []
