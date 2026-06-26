@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { anomalyCharacters } from '@/data/constants'
 
@@ -30,8 +30,9 @@ const GlitchCard = ({ children }) => {
   const [isReady, setIsReady] = useState(false)
   const [randomString, setRandomString] = useState('')
 
-  const intervalRef = useRef(null)
-  const isInViewRef = useRef(false) // Ref to track viewport status
+  // Tracks whether the card has scrolled into view; gates the noise loop
+  // so off-screen cards do no work.
+  const [isInView, setIsInView] = useState(false)
 
   const animationDuration = 1.2
 
@@ -41,47 +42,40 @@ const GlitchCard = ({ children }) => {
     return () => clearTimeout(timer)
   }, [])
 
-  // Effect to generate the random string noise
+  // Animate the encrypted noise only while the card is in view. Once the
+  // decrypt sweep starts, keep refreshing for its duration, then stop.
   useEffect(() => {
-    let interval = null
-    if (!isDecrypting) {
-      interval = setInterval(() => {
-        setRandomString(getPreGeneratedNoise(1200))
-      }, 100)
-    } else {
-      // Keep updating noise during the sweep animation
-      interval = setInterval(() => {
-        setRandomString(getPreGeneratedNoise(1200))
-      }, 100)
-      const timer = setTimeout(() => {
-        clearInterval(interval)
-      }, animationDuration * 1000)
-      return () => {
-        clearInterval(interval)
-        clearTimeout(timer)
-      }
+    if (!isInView) return
+
+    const interval = setInterval(() => {
+      setRandomString(getPreGeneratedNoise(1200))
+    }, 100)
+
+    let stopTimer
+    if (isDecrypting) {
+      stopTimer = setTimeout(
+        () => clearInterval(interval),
+        animationDuration * 1000
+      )
     }
-    return () => clearInterval(interval)
-  }, [isDecrypting, animationDuration])
+
+    return () => {
+      clearInterval(interval)
+      clearTimeout(stopTimer)
+    }
+  }, [isInView, isDecrypting])
 
   useEffect(() => {
-    // Check if the component is ready AND in view, but not already decrypting.
-    if (isReady && isInViewRef.current && !isDecrypting) {
+    // Decrypt once the card is both ready and in view.
+    if (isReady && isInView && !isDecrypting) {
       setIsDecrypting(true)
     }
-  }, [isReady, isDecrypting])
+  }, [isReady, isInView, isDecrypting])
 
   return (
     <motion.div
       className='relative w-full h-[350px] rounded-lg overflow-hidden border border-matrix-green-dark/30'
-      // onViewportEnter updates ref.
-      onViewportEnter={() => {
-        isInViewRef.current = true
-        // If the component is already ready when it enters view, decrypt immediately.
-        if (isReady) {
-          setIsDecrypting(true)
-        }
-      }}
+      onViewportEnter={() => setIsInView(true)}
       viewport={{ once: true, amount: 0.5 }}
     >
       {/* Content Layer */}
