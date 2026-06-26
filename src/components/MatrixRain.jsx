@@ -2,10 +2,13 @@
 
 import { anomalyCharacters } from '@/data/constants'
 import { useEffect, useRef } from 'react'
+import { useSettings } from '@/context/SettingsContext'
 
 const MatrixRain = () => {
-  // Animation speed
-  const speed = 30
+  const { reducedMotion } = useSettings()
+  // Animation speed (frames/sec). Halved when the user prefers reduced motion
+  // so the effect persists but calms down rather than disappearing.
+  const speed = reducedMotion ? 15 : 30
 
   const canvasRef = useRef(null)
   const animationFrameIdRef = useRef(null)
