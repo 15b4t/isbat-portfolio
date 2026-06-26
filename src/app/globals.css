@@ -169,7 +169,6 @@
     z-index: 2;
     background-size: 100% 3px, 3px 100%;
     pointer-events: none;
-    animation: flicker 0.15s infinite;
   }
 
   /* CRT Effect Wrapper */
@@ -182,10 +181,6 @@
     0% { opacity: 0.978; }
     50% { opacity: 1; }
     100% { opacity: 0.985; }
-  }
-
-  .crt-active .crt-effect {
-    animation: crt-screen-flicker 0.15s infinite;
   }
 
   /* Full screen scanlines overlay covering the whole screen (active only when crt-active is set) */
@@ -210,7 +205,25 @@
     z-index: 10000;
     background-size: 100% 3px, 3px 100%;
     pointer-events: none; /* CRUCIAL: for clicking through the overlay */
-    animation: flicker 0.15s infinite;
+  }
+
+  /*
+    The animated flicker is the actual motion hazard, so it is gated behind
+    prefers-reduced-motion: no-preference. The static scanline textures above
+    still render for reduced-motion users (they don't move) — only the rapid
+    opacity oscillation is suppressed. A saved CRT preference still controls
+    the static look via the .crt-active class.
+  */
+  @media (prefers-reduced-motion: no-preference) {
+    .crt-active .crt-effect {
+      animation: crt-screen-flicker 0.15s infinite;
+    }
+    .crt-active .crt-effect::after {
+      animation: flicker 0.15s infinite;
+    }
+    .crt-container::after {
+      animation: flicker 0.15s infinite;
+    }
   }
 
   /* Background Grid layer */

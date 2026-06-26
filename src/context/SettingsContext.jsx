@@ -7,14 +7,37 @@ const SettingsContext = createContext()
 export function SettingsProvider({ children }) {
   const [crtEnabled, setCrtEnabled] = useState(true)
   const [bloomEnabled, setBloomEnabled] = useState(true)
+  // Tracks the OS "reduce motion" preference so motion-heavy effects
+  // (e.g. the matrix rain speed) can degrade gracefully.
+  const [reducedMotion, setReducedMotion] = useState(false)
 
-  // Load preferences from localStorage on mount
+  // Resolve initial effect state. Precedence: saved setting -> OS
+  // accessibility preference -> default-on. A saved choice always wins,
+  // so users can opt back into effects even if their OS asks to reduce them.
   useEffect(() => {
-    const savedCrt = localStorage.getItem('sys_crt_enabled')
-    const savedBloom = localStorage.getItem('sys_bloom_enabled')
+    const motionMql = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReducedMotion(motionMql.matches)
+    const handleMotionChange = e => setReducedMotion(e.matches)
+    motionMql.addEventListener('change', handleMotionChange)
 
-    if (savedCrt !== null) setCrtEnabled(savedCrt === 'true')
-    if (savedBloom !== null) setBloomEnabled(savedBloom === 'true')
+    const savedCrt = localStorage.getItem('sys_crt_enabled')
+    if (savedCrt !== null) {
+      setCrtEnabled(savedCrt === 'true')
+    } else if (motionMql.matches) {
+      setCrtEnabled(false)
+    }
+
+    const savedBloom = localStorage.getItem('sys_bloom_enabled')
+    if (savedBloom !== null) {
+      setBloomEnabled(savedBloom === 'true')
+    } else if (
+      window.matchMedia('(prefers-reduced-transparency: reduce)').matches ||
+      window.matchMedia('(prefers-contrast: more)').matches
+    ) {
+      setBloomEnabled(false)
+    }
+
+    return () => motionMql.removeEventListener('change', handleMotionChange)
   }, [])
 
   const toggleCrt = () => {
@@ -38,6 +61,7 @@ export function SettingsProvider({ children }) {
       value={{
         crtEnabled,
         bloomEnabled,
+        reducedMotion,
         toggleCrt,
         toggleBloom,
       }}
