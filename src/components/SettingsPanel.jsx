@@ -7,8 +7,10 @@ const SettingsPanel = () => {
   const [isOpen, setIsOpen] = useState(false)
   const {
     crtEnabled,
+    flickerEnabled,
     bloomEnabled,
     toggleCrt,
+    toggleFlicker,
     toggleBloom,
   } = useSettings()
 
@@ -59,6 +61,19 @@ const SettingsPanel = () => {
                 />
                 <span className='text-matrix-green group-hover:text-white transition-colors'>
                   {crtEnabled ? '[X]' : '[ ]'} CRT SCANLINES
+                </span>
+              </label>
+
+              {/* Flicker Toggle */}
+              <label className='flex items-center gap-3 cursor-pointer select-none group'>
+                <input
+                  type='checkbox'
+                  checked={flickerEnabled}
+                  onChange={toggleFlicker}
+                  className='sr-only'
+                />
+                <span className='text-matrix-green group-hover:text-white transition-colors'>
+                  {flickerEnabled ? '[X]' : '[ ]'} SCREEN FLICKER
                 </span>
               </label>
 

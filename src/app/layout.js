@@ -18,7 +18,7 @@ const vt323 = VT323({
 function LayoutContent({ children }) {
   const [isLoading, setIsLoading] = useState(true)
   const [isFirstVisit, setIsFirstVisit] = useState(null)
-  const { crtEnabled, bloomEnabled } = useSettings()
+  const { crtEnabled, flickerEnabled, bloomEnabled } = useSettings()
 
   useEffect(() => {
     document.title = 'Isbat Bin Hossain | Portfolio'
@@ -63,7 +63,7 @@ function LayoutContent({ children }) {
           content='https://isbat-portfolio.vercel.app/screenshots/hero_section.PNG'
         />
       </head>
-      <body className={`${firaCode.className} ${vt323.variable} bg-background ${crtEnabled ? 'crt-active' : ''} ${bloomEnabled ? 'bloom-active' : ''}`}>
+      <body className={`${firaCode.className} ${vt323.variable} bg-background ${crtEnabled ? 'crt-active' : ''} ${flickerEnabled ? 'flicker-active' : ''} ${bloomEnabled ? 'bloom-active' : ''}`}>
         <div className='crt-effect'>
           {isFirstVisit === null ? (
             <div className='w-full h-dvh' />

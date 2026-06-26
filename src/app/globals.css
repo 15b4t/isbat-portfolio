@@ -208,22 +208,21 @@
   }
 
   /*
-    The animated flicker is the actual motion hazard, so it is gated behind
-    prefers-reduced-motion: no-preference. The static scanline textures above
-    still render for reduced-motion users (they don't move) — only the rapid
-    opacity oscillation is suppressed. A saved CRT preference still controls
-    the static look via the .crt-active class.
+    The animated flicker is the actual motion, split into its own toggle
+    (flicker-active) so users have full control independent of the static
+    scanlines (crt-active). Its default respects prefers-reduced-motion via
+    the settings context, and a saved choice always wins. Scanline flicker
+    requires both classes since the ::after overlay only exists under
+    crt-active.
   */
-  @media (prefers-reduced-motion: no-preference) {
-    .crt-active .crt-effect {
-      animation: crt-screen-flicker 0.15s infinite;
-    }
-    .crt-active .crt-effect::after {
-      animation: flicker 0.15s infinite;
-    }
-    .crt-container::after {
-      animation: flicker 0.15s infinite;
-    }
+  .flicker-active .crt-effect {
+    animation: crt-screen-flicker 0.15s infinite;
+  }
+  .crt-active.flicker-active .crt-effect::after {
+    animation: flicker 0.15s infinite;
+  }
+  .flicker-active .crt-container::after {
+    animation: flicker 0.15s infinite;
   }
 
   /* Background Grid layer */
